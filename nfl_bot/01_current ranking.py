@@ -21,7 +21,7 @@ def nflgame_print(nfl_dict):
 year = 2019
 # weeks = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
 # weeks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
-weeks = [11, 12, 13]
+weeks = [11, 12, 13, 14]
 season_type = 'REG'
 #
 # # '''Rank Players'''

@@ -6,7 +6,7 @@ import requests
 import os
 
 class TestMerkinMen(unittest.TestCase):
-    directory = 'Merkin Men'
+    directory = '../merkin_men_2019'
     sleeper_url = 'https://api.sleeper.app/v1/league/'
     merkin_men_league_id = 393807404686458880
 
@@ -20,7 +20,7 @@ class TestMerkinMen(unittest.TestCase):
         self.assertTrue(path, 'No directory: %s' % self.directory)
 
     def test_users(self):
-        users_file = 'merkin_men_users.json'
+        users_file = 'merkin_men_users_2019.json'
         file_path = os.path.join(self.directory, users_file)
         self.assertTrue(os.path.isfile(file_path), 'file: %s not in %s' % (users_file, self.directory))
 
