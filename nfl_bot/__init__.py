@@ -44,17 +44,31 @@ def draft_team(year, weeks, season_type):
     return teams_list
 
 
-def draft_player(year, weeks, season_type):
-    """Build Dictionary of Players"""
-    players = {}
-    player.off_player_dict(players, year, weeks, season_type)
+class Player:
+    def __init__(self, year, weeks):
+        games = nflgame.games(year=year, week=weeks)  # range(1, 18))
+        players = nflgame.combine_max_stats(games)
+        """Build Dictionary of Players"""
+        self.player_dict = self.make_player_dict(players)
+        # return players
+
+    def make_player_dict(self, players):
+        print("Making Player Dict")
+        player_dict = {}
+        for p in players:
+            player_dict[p.playerid] = {
+                'name': str(p),
+                'position': p.guess_position
+            }
+            print(str(p), str(p.playerid), str(p.guess_position), str(p.team))
+        return player_dict
+
+    def add_player_ranking_to_dict(self, player_dict):
+        # TODO
+        #  Utilize 01_current ranking.py to fill player_dict with past year data.
+        pass
 
 
-def off_player(play_dict, year, weeks, season_type):
-    pass
-
-    # '''Add Total Previous Year Stats to Players Dictionary'''
-    # player.off_player_pts(players, year, weeks, season_type)
 
 '''Previous Year Injuries to Player'''
 # pyth_wins 5%
@@ -65,8 +79,11 @@ def off_player(play_dict, year, weeks, season_type):
 # injury -5%
 
 
-games = nflgame.games(year=2019, week=1)
-players = nflgame.combine_max_stats(games)
-for p in players:
-    # print(dir(p))
-    print(str(p), p.playerid, p.guess_position)
+
+# 1. Rank teams for draft -> this can likely be made into class in the future.
+# draft_data_dict = draft_team(year=2019, weeks=range(1,18), season_type='REG')
+
+# 2. Rank players
+'''This should return a ranked dictionary of players and the order they should be drafted.'''
+draft_player_ordered_dict = Player(year=2019, weeks=1)
+print(draft_player_ordered_dict.player_dict)

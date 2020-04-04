@@ -1,17 +1,5 @@
-from merkin_men import SleeperBuild, SleeperPlayersTaken
-import tabulate
-
-# Points Ranking Script #########################################
-# Steps
-# 1. Define position, player rankings, year and weeks of interest.
-# 2. Run through loop to calculate the points each player would attain based on 2017 Murkin Men Criteria
-# 3. Rank players by position based on their points achieved in comparisson to their peers.
-# 4. Save everything in a binary format (i.e., pickle) for quick access if there is
-# not internet connection for NFL game.
 import nflgame
-# import pickle
 import tabulate
-import troubleshoot
 from collections import defaultdict
 
 ## Murkin Men Scoring
@@ -62,6 +50,7 @@ def std_deviation(scores):
         variance += (avg - score) ** 2
     std = (variance / len(scores)) ** 0.5
     return std
+
 
 def PL_maker(PL, players, position_list, season_length, week):
     for p in players:
@@ -285,10 +274,26 @@ def nflgame_print(nfl_dict):
         nfl_dict['PL_rank'][key]['Rank'] = a
 
 
-#cd venv/bin and run nflgame-update-players and run nflgame-update-schedule
-def rank_players():
+
+
+if __name__ == "__main__":
+    """
+    Print Standard Player Ranking like all previous years
+
+    1. Update nflgame
+        cd venv/bin and run nflgame-update-players and run nflgame-update-schedule
+    
+    Points Ranking Script #########################################
+    Steps
+    1. Define position, player rankings, year and weeks of interest.
+    2. Run through loop to calculate the points each player would attain based on 2017 Murkin Men Criteria
+    3. Rank players by position based on their points achieved in comparisson to their peers.
+    4. Save everything in a binary format (i.e., pickle) for quick access if there is not internet connection 
+        for NFL game.
+    
+    """
     year = 2019
-    weeks = [15,16,17]
+    weeks = [1, 2]
     season_type = 'REG'
     #
     # # '''Rank Players'''
@@ -303,8 +308,4 @@ def rank_players():
     nflgame_print(rb_nflgame)
     nflgame_print(te_nflgame)
     nflgame_print(k_nflgame)
-
-
-"""Print Standard Player Ranking like all previous years"""
-rank_players()
 
