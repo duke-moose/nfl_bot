@@ -16,14 +16,17 @@ def save_json_from_api(api_url, f_path_and_name):
 
 
 class SleeperBuild:
-    '''Builds Merkin Men User Roster, All Players, and Players on each User Roster'''
+    """
+    Builds Merkin Men User Roster, All Players, and Players on each User Roster
+    """
     def __init__(self, year, league_name, league_num):
         self.year = year
         self.directory = league_name + '_' + str(year)
         self.leagueId = league_num
         self.url = 'https://api.sleeper.app/v1/league/' + str(self.leagueId)
-        self.users = os.path.join(self.directory, league_name + '_users_' + str(year) +'.json')
-        self.usersPlayerRoster = os.path.join(self.directory, league_name + '_user_player_roster_' + str(year) + '.json')
+        self.users = os.path.join(self.directory, league_name + '_users_' + str(year) + '.json')
+        self.usersPlayerRoster = os.path.join(self.directory, league_name + '_user_player_roster_' +
+                                              str(year) + '.json')
         self.nflPlayerUrl = 'https://api.sleeper.app/v1/players/nfl'
         self.mmUserUrl = self.url + '/users'
         self.today = datetime.today()
@@ -83,7 +86,9 @@ class SleeperBuild:
 
 
 class SleeperPlayersTaken:
-    '''Builds dictionary of players taken from rosters except specified user'''
+    """
+    Builds dictionary of players taken from rosters except specified user
+    """
     def __init__(self, me, sleeper_build):
         self.moose = me
         self.sleeper_build = sleeper_build
@@ -104,7 +109,7 @@ class SleeperPlayersTaken:
         return sleeper_dict
 
     def user_players(self):
-        self.sleeper_dict
+        # self.sleeper_dict
         with open(self.sleeper_build.usersPlayerRoster, 'r') as infile:
             mm_player_roster = json.load(infile)
             players = [(i['owner_id'], i['players']) for i in mm_player_roster]
@@ -122,12 +127,13 @@ class SleeperPlayersTaken:
 
 
 if __name__ == '__main__':
-    mm = SleeperBuild(year=2019, league_name='merkin_men', league_num=393807404686458880)
-    mm_dict = SleeperPlayersTaken(me='DeepMooseKnuckle', sleeper_build=mm)
+    mm = SleeperBuild(year=2019,
+                      league_name='merkin_men',
+                      league_num=393807404686458880)
+    mm_dict = SleeperPlayersTaken(me='DeepMooseKnuckle',
+                                  sleeper_build=mm)
     print(mm_dict.sleeper_dict)
     print(mm_dict.taken_list)
-
-
 
 
 

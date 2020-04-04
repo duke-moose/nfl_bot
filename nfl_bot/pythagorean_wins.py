@@ -39,7 +39,6 @@ def pythagorean_calculated_wins(teams, year, weeks, season_type):
         teams[game.away][cat_name][4] += game.score_home
 
     for team in teams:
-        # print(team)
         pf = teams[team][cat_name][3]
         pa = teams[team][cat_name][4]
         pyth_wins = pyth_calc(pf, pa)
