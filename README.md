@@ -12,3 +12,6 @@ Draft
 3. Rank of players available as free agents.
     pts for past 3 weeks.
     check if any players improve current team.
+    
+# Insults for BOT
+Your mother is a snow blower! - maybe all caps
